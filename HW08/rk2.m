@@ -24,4 +24,3 @@ for n = 1: n_steps
   y(n+1,:) = y(n,:) + dt*f_star;
 
 end
-

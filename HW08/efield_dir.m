@@ -1,4 +1,4 @@
-function E_hat = efield_dir(r)
+function E_hat = efield_dir(r,s)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -28,19 +28,19 @@ function E_hat = efield_dir(r)
  % r(2) = y
   
 %Vector for electric field created by parallel plates.
-  if(x<(d-a) && x>-a)
-    E_plates = sigma/eps*[-1,0]     % Does not change with position as long as inbetween the plates,
-                                    % and is constantly in -x direction
-  end
+  %if(r(1)<(d-a) && r(1)>-a)
+    E_plates = sigma/eps*[-1,0];     % Does not change with position as long as inbetween the plates,
+                                     % and is constantly in -x direction
+  
 %Vector for electric field created by the sphere.
   if(norm(r)>R)
     E_sphere = K*Q*power(norm(r),-3)*r;
   else
-    E_sphere = 0;
+    E_sphere = [0,0];
   end  
   
  %Net electric field vector
   E_net = E_plates + E_sphere;
 
 %Direction by scaling
- E_hat= E_net/norm(E_net)
+ E_hat= E_net/norm(E_net);

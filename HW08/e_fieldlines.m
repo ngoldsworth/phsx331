@@ -1,4 +1,4 @@
-function e_fieldlines()
+% function e_fieldlines()
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -28,8 +28,8 @@ function e_fieldlines()
 % Calculational parameters
 %
 s0 = 0;                  % start at beginning of curve
-ds = 0.01;               % step size
-nsteps = 100;            % number of points in each field line
+ds = 0.001;               % step size
+nsteps = 1500;            % number of points in each field line
 R = 0.146;               % radius of sphere in centimeters
 
 %
@@ -41,37 +41,62 @@ hold on
 %
 % Plot some lines starting near the x-axis
 %
-ymin = -10*R;
-dy = R;
-ymax = 10*R;
-xmin = -a;
-dx = 0.1*R;
-xmax = d-a;
 
-for y = ymin: dy: ymax
-  for x = xmin: dx: xmax
-    r = rk2( [x,y], s0, ds, nsteps, 'efield_dir');
-    plot (r(:,1),r(:,2))
-  end
+
+%Starting points just inside the sphere
+dtheta=15;
+ncirc=180/dtheta;
+xcirc=1:ncirc;
+ycirc=1:ncirc;
+% Runga Kutta and plot just inside the sphere
+for i=1:(ncirc+1)
+theta = ((i-1)*dtheta*pi/180)-pi/2;              % radians
+xcirc(i) = (.999*R)*cos(theta);                  % cm
+ycirc(i) = (.999*R)*sin(theta);                  % cm
 end
+xs=xcirc;
+ys=ycirc;
 
-%
+
+%Starting points just outside the sphere
+dtheta=30;
+ncirc=180/dtheta;
+xcirc=1:ncirc;
+ycirc=1:ncirc;
+for i=1:(ncirc+1)
+theta = ((i-1)*dtheta*pi/180)-pi/2;              % radians
+xcirc(i) = (1.001*R)*cos(theta);                 % cm
+ycirc(i) = (1.001*R)*sin(theta);                 % cm
+end
+%Array of all starting points, just inside and outside the sphere.
+xs=[xs xcirc];
+ys=[ys ycirc];
+
+
 % Draw circles indicating where the Sphere is
 %
 dtheta = 5;
 ncirc = 360/dtheta;
-
 xcirc = 1: ncirc;
 ycirc = 1: ncirc;
-for i = 1: ncirc
+for i = 1: (ncirc+1)
   theta = (i-1) * dtheta * pi/180;
   xcirc(i) = R*cos(theta);
   ycirc(i) = R*sin(theta);
 end
+
+%Runga-Kutta starting on the sphere
+for i=1:length(xs)
+    r=rk2([xs(i), ys(i)],s0,ds,nsteps,'efield_dir');      %Runga Kutta
+    plot(r(:,1),r(:,2),'k')                               %Plots Field Lines
+end
 plot ( xcirc, ycirc, '-r' );
 
-
-plot ( xcirc, ycirc, '-m' );
+% performs runga kutta starting at on the right plate
+for y=-.5:.1:.5
+    r=rk2([d-a y], s0,.001,1200,'efield_dir');    % runga kutta
+    plot(r(:,1),r(:,2),'k')                       % plots field lines
+end
 
 %
 % Add the finishing touches
@@ -79,5 +104,3 @@ plot ( xcirc, ycirc, '-m' );
 xlabel('x (cm)');
 ylabel('y (cm)');
 title('Electric Field Lines');
-axis([ -R_E*0.1 R_E*2 -R_E*0.01 R_E*0.01 ]);
-%axis([ R_E-10*rad_Earth R_E+10*rad_Earth -10*rad_Earth 10*rad_Earth ]);
