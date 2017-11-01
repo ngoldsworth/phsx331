@@ -1,9 +1,11 @@
-function f = hw09_oscillator(y,t)
+function f = hw09_resonant_oscillator(y,t)
 % Author:  N. Goldsworth
 % Date:    2017-11-01
 % Class:   Phys 331
 % Purpose: This function will determine the acceleration of a
-%          one-dimensional, damped, driven, harmonic oscillator
+%          one-dimensional, damped, driven, harmonic oscillator operating
+%          at the resonant frequency of the system. For HW09, the resonant
+%          frequency is .14528 Hz
 % Usage:   The input two-element array y contains y(1)=x (in meters)
 %          and y(2) = dx/dt (in meters per second)
 %          The input variable t time, and is present in the driving force.
@@ -26,7 +28,7 @@ v0 = 0      ; % meters/second, initial condition for velocity
 f1 = y(2);
 
 % Let x'' =  -kx/m - bx'/m + F_0*cos(wt)/m
-f2 = -(k/m)*y(1) - (b/m)*f1 + (F_0)*(1/m)*cos(w*t);
+f2 = -(k/m)*y(1) - (b/m)*f1 + (F_0)*(1/m)*cos(w_r*t);
 
 % Now, form an arraw with f1 and f2
 f = [ f1, f2 ];

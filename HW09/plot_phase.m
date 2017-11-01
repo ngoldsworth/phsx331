@@ -3,9 +3,10 @@ function plot_phase(dt, N)
 % Author:  C. Riedel
 % Date:    2006-10-26
 % Class:   Phys 331
-% Purpose: This function will evaluate the speed and height as a 
-%          function of time for the sky-diver problem and plot 
-%          the speed versus the height.
+% Purpose: This function will evaluate the velocity and displacement of the
+%          the three oscillators as a 
+%          function of time for the problem given in HW09, and plot 
+%          the velocity versus the diaplacement.
 % Usage:   The function sky_diver_bis.m must have as 
 %          inputs: ( [z(m), z'(m/s)], t(s) ) and 
 %          outputs: [ f1(m/s), f2(m/s^2) ], each a function of time
