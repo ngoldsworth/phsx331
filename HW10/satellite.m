@@ -34,7 +34,7 @@ function f = satellite( w, t )
    
 % Creating useful vectors
    r = [w(1) w(2)];
-   v = [w(3) w(4)]
+   v = [w(3) w(4)];
    
 %
 % Now, form the array of derivatives
@@ -43,9 +43,9 @@ function f = satellite( w, t )
 f1 = w(3);                      % dx/dt = dw(1)/dt = w(3)
 f2 = w(4);                      % dy/dt = dw(2)/dt = w(4)
 
-speed = norm(v);                % satellite's speed
+speed=(w(3)^2 + w(4)^2)^(1/2);  % satellite's speed
 
-f3 = -GMx/(norm(r))^3;          %d^2x/dt^2 = -GMx/r^3
-f4 = -GMy/(norm(r))^3;          %d^2y/dt^2 = -gMy/r^3
+f3 = -G*M*w(1)/(w(1)^2 + w(2)^2)^(3/2);  %d^2x/dt^2 = -GMx/r^3
+f4 = -G*M*w(2)/(w(1)^2 + w(2)^2)^(3/2);  %d^2y/dt^2 = -GMx/r^3
 
 f = [ f1, f2, f3, f4 ];
