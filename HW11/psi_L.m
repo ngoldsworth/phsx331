@@ -26,25 +26,21 @@ function psi_L()
   dk  = (kup-klow)/100; % Step size for k-array
 
 % Create array of k-values
-  %k = klow:dk:kup;     % units of inverse meters, k is a wavenumber
-  k=0:pi/(10*L):10*pi/L;
+  k = klow:dk:kup;     % units of inverse meters, k is a wavenumber
   
 % Set up plot/figure
   figure()
   hold on
   
 % Wavefunction calculations, plot using arrays
-    for i=1:length(k)
-      wav=A*sin(k(i)*L);
-      plot(k,wav)
-    end
+    wav=A*sin(k*L)
+    plot(k,wav)
 
 % Figure stuff
-    %xL = xlim;
-    %yL = ylim;
-    %line([0 0], yL);  %x-axis
-    %line(xL, [0 0]);  %y-axis
-    legend()
+    xL = xlim;
+    yL = ylim;
+    line([0 0], yL);  %x-axis
+    line(xL, [0 0]);  %y-axis
     xlabel('$$k$$ (inverse meters)','interpreter','latex')
     ylabel('$$\psi(kL)$$','interpreter','latex')
     title('$$k$$ vs $$\psi(kL)$$ for continuous $$k$$','interpreter','latex')
