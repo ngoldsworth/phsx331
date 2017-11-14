@@ -23,7 +23,7 @@ function psi_L()
 % Bounds for k, and step size for array
   klow = 0;             % Lower bound for k
   kup  = 10*pi/L;       % Upper bound for k
-  dk  = (kup-klow)/100; % Step size for k-array
+  dk  = (kup-klow)/1000; % Step size for k-array
 
 % Create array of k-values
   k = klow:dk:kup;     % units of inverse meters, k is a wavenumber
@@ -33,16 +33,19 @@ function psi_L()
   hold on
   
 % Wavefunction calculations, plot using arrays
-    wav=A*sin(k*L)
-    plot(k,wav)
+    wav=A*sin(k*L);
+    plot(k,wav,'r')
 
 % Figure stuff
-    xL = xlim;
-    yL = ylim;
-    line([0 0], yL);  %x-axis
-    line(xL, [0 0]);  %y-axis
-    xlabel('$$k$$ (inverse meters)','interpreter','latex')
-    ylabel('$$\psi(kL)$$','interpreter','latex')
+
+        %These 4 lines draw axes
+        xL = xlim;
+        yL = ylim;
+        line([0 0], yL);  %x-axis
+        line(xL, [0 0]);  %y-axis
+        
+    xlabel('$$k$$ (m$$^{-1}$$)','interpreter','latex')
+    ylabel('$$\psi(kL)$$ (m$$^{-1/2}$$)','interpreter','latex')
     title('$$k$$ vs $$\psi(kL)$$ for continuous $$k$$','interpreter','latex')
 end
 

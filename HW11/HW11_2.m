@@ -37,9 +37,9 @@ yL = ylim;
 line([0 0], yL);  %x-axis
 line(xL, [0 0]);  %y-axis
 legend('n=n_1','n_2','n_3','n_4','n_5','n_6','n_7','n_8','n_9','n_{10}')
-xlabel('$$x$$ (meters)','interpreter','latex')
-ylabel('$$\Psi(kx)$$','interpreter','latex')
-title('$$x$$ vs $$\Psi(kx)$$ where $$k=\frac{2\pi n}{10}$$','interpreter','latex')
+xlabel('$$x$$ (m)','interpreter','latex')
+ylabel('$$\Psi(kx)$$ (m$$^{-1/2}$$)','interpreter','latex')
+title('$$x$$ vs $$\Psi(kx)$$ where $$k=\frac{2\pi n}{10}$$, starting with $n_1=5$','interpreter','latex')
 
 end
 

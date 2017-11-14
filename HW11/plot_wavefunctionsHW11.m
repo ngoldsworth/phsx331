@@ -24,14 +24,23 @@ function plot_wavefunctionsHW11()
   
   figure()
   hold on
-% Wavefunction Calculations
+% Wavefunction Calculations and Plot
 for i=1:length(n)
     wav=A*sin(k(i)*x);
-    plot(x,wav)
+    plot(x,wav,'-')
 end
+
+% Make plot look nice
+
+    %These 4 lines draw axes
+    xL = xlim;
+    yL = ylim;
+    line([0 0], yL);  %x-axis
+    line(xL, [0 0]);  %y-axis
+    
 legend('n=1','2','3','4','5','6','7','8','9','10')
-xlabel('$$x$$ (meters)','interpreter','latex')
-ylabel('$$\Psi(kx)$$','interpreter','latex')
+xlabel('$$x$$ (m)','interpreter','latex')
+ylabel('$$\Psi(kx)$$ (m$$^{-1/2}$$)','interpreter','latex')
 title('$$x$$ vs $$\Psi(kx)$$ where $$k=\frac{2\pi n}{10}$$','interpreter','latex')
 
 end
