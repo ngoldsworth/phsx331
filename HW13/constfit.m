@@ -1,4 +1,4 @@
-function fitpar_const = constfit(x, y, sigmay)
+function fitpar_const = constfit()
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Author:  N. Goldsworth
@@ -16,8 +16,17 @@ function fitpar_const = constfit(x, y, sigmay)
 %          fitpar_const(1) = c (value of c, with same units as y)
 %          fitpar_const(2) = reduced chi-squared (chi2red, unitless)
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   ** This function is a direct modification of the original linfit.m
+%      function from the textbook
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+% Read the data to be fit
+%
+
+[x, y, sigmay] = textread( 'hw13.dat', '%f %f %f', 'headerlines', 5 );
+
 % Verify that all input arrays are the same length, 
 % and that there is enough data
 %
@@ -58,7 +67,7 @@ end
         chi2red = 0;
     end
     
- fitpar_const = [ c, chi2red ];
+ fitpar_const = [ c, chi2red ]
   
 end
 

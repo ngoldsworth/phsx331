@@ -2,15 +2,18 @@ function plotfit( xmin, xmax )
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Author:  C. Riedel
-% Date:    2006-11-30
+% Author:  N. Goldsworth
+% Date:    6 December 2017
 % Class:   Phys 331
 % Purpose: This function will make a plot of data with error bars,
-%          overlaid with a least-squares straight-line fit: y = a + bx.
+%          overlaid with three least-squares straight-line fits:
+%                y = a + bx     Linear fit
+%                y = c          Constant fit
+%                y = dx         Proportional fit
 % Usage:   xmin,xmax = minimum, maximum x value for the straight line
-%          The function linfit.m accepts data of the form
-%            x = independent variable array
-%            y = dependent variable array
+%          The functions linfit.m, constfit.m, and propfit.m accepts data of the form
+%            x  = independent variable array
+%            y  = dependent variable array
 %            dy = array of uncertainties in dependent variable
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -70,6 +73,6 @@ title('$$x$$ vs $$y$$','interpreter','latex');
     sb = num2str(fitpar_lin(3),3);
     schi2_nu = num2str(fitpar_lin(5),3);
     blah = strcat('a = ',sa,'^oC   b = ',sb,'^oC/cm  {\chi}^2_{red} = ',schi2_nu);
-    legend(blah,0);
+    legend(blah);
 %}
 

@@ -1,12 +1,12 @@
-function fitpar_prop = propfit(x, y, sigmay)
+function fitpar_prop = propfit()
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Author:  N. Goldsworth
 % Date:    5 Dec 2017
 % Class:   Phys 331
 % Purpose: This function will make a least-squares fit to data with
-%          a straight line y = c, using an algorithm based on 
-%          Bevington.
+%          a straight line through the origin y = dx, using an algorithm 
+%          based on Bevington.
 % Usage:   x = independent variable array
 %          y = dependent variable array
 %          sigmay = array of uncertainties in dependent variable
@@ -16,8 +16,18 @@ function fitpar_prop = propfit(x, y, sigmay)
 %          fitpar_prop(1) = d (slope, has units of: unit of x per unit of y)
 %          fitpar_prop(2) = reduced chi-squared (chi2red, unitless)
 %
+%   ** This function is a direct modification of the original linfit.m
+%      function from the textbook
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+%
+% Read the data to be fit
+%
+
+[x, y, sigmay] = textread( 'hw13.dat', '%f %f %f', 'headerlines', 5 );
+
+
 % Verify that all input arrays are the same length, 
 % and that there is enough data
 %
@@ -58,7 +68,7 @@ end
         chi2red = 0;
     end
     
- fitpar_prop = [ d, chi2red ];
+ fitpar_prop = [ d, chi2red ]
   
 end
 

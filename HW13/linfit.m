@@ -2,8 +2,8 @@ function fitpar_lin = linfit( x, y, sigmay )
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Author:  C. Riedel
-% Revised: 2011-06-01
+% Author:  N. Goldsworth
+% Revised: 6 December 2017
 % Class:   PHSX 331
 % Purpose: This function will make a least-squares fit to data with
 %          a straight line y = a + bx, using an algorithm based on 
@@ -20,7 +20,18 @@ function fitpar_lin = linfit( x, y, sigmay )
 %          fitpar(4) = uncertainty in b (db)
 %          fitpar(5) = reduced chi-squared (chi2red, unitless)
 %
+%   ** This function is a direct modification of the original linfit.m
+%      function from the textbook
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%
+% Read the data to be fit
+%
+
+[x, y, sigmay] = textread( 'hw13.dat', '%f %f %f', 'headerlines', 5 );
+
 
 %
 % Verify that all input arrays are the same length, 
@@ -67,4 +78,4 @@ else % npts = npar
   chi2red = 0;
 end
 
-fitpar_lin = [ a, da, b, db, chi2red ];
+fitpar_lin = [ a, da, b, db, chi2red ]
