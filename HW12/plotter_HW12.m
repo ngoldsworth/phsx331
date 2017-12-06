@@ -29,17 +29,27 @@ l=0:.01:7; % Create array of l values to plug into each function.
     y_D(i) = legendre_D(l(i)); % 2-column array for plotting Case D
   end
   
+% After using bisect.m with legendre_A.m, legendre_B.m, legendre_C.m, and
+% legendre_D.m, I found that the curves intesected at intergers on the
+% l-axis at values of l=0,1,2,6, respectively
+  
 %
 % MAKE THE FIGURE
 %
+
 figure()
 hold on
 
 % Plot each array.
-    plot(l,y_A)
-    plot(l,y_B)
-    plot(l,y_C)
-    plot(l,y_D)
+    plot(l,y_A, 'b')
+    plot(l,y_B, 'r')
+    plot(l,y_C, 'g')
+    plot(l,y_D, 'm')
+% Mark intersections of curves with l-axis
+    scatter(0,0, 'b')
+    scatter(1,0, 'r')
+    scatter(2,0, 'g')
+    scatter(6,0, 'm')
 % Create legend with LaTeX interpreter for neatness
     leg1=legend('Case A', 'Case B' , 'Case C', 'Case D')
         set(leg1, 'interpreter', 'latex')
